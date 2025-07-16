@@ -38,6 +38,7 @@ pub mod tile {
     #[derive(
         Clone, PartialEq, ::prost::Message, specta::Type, serde::Serialize, serde::Deserialize,
     )]
+    #[specta(rename = "GeoZeroFeature")]
     pub struct Feature {
         #[prost(uint64, optional, tag = "1", default = "0")]
         pub id: ::core::option::Option<u64>,
