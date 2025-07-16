@@ -2,7 +2,13 @@
 name = "geozero"
 description = "Zero-Copy reading and writing of geospatial data in WKT/WKB, GeoJSON, MVT, GDAL, and other formats."
 keywords = ["geo", "geojson", "gdal", "mvt", "postgis"]
-categories = ["science::geo", "parser-implementations", "api-bindings", "database", "rendering::data-formats"]
+categories = [
+    "science::geo",
+    "parser-implementations",
+    "api-bindings",
+    "database",
+    "rendering::data-formats",
+]
 readme = "../README.md"
 version.workspace = true
 authors.workspace = true
@@ -33,6 +39,7 @@ with-wkt = ["dep:wkt"]
 
 [dependencies]
 log.workspace = true
+serde.workspace = true
 serde_json.workspace = true
 thiserror.workspace = true
 
@@ -55,6 +62,7 @@ prost = { workspace = true, optional = true }
 scroll = { workspace = true, optional = true }
 sqlx = { workspace = true, optional = true }
 wkt = { workspace = true, optional = true }
+specta = { workspace = true }
 
 [dev-dependencies]
 geo.workspace = true
@@ -62,7 +70,13 @@ hex.workspace = true
 kdbush.workspace = true
 postgres.workspace = true
 seek_bufread.workspace = true
-sqlx = { workspace = true, features = ["runtime-tokio-native-tls", "macros", "time", "postgres", "sqlite"] }
+sqlx = { workspace = true, features = [
+    "runtime-tokio-native-tls",
+    "macros",
+    "time",
+    "postgres",
+    "sqlite",
+] }
 tokio = { workspace = true, features = ["macros"] }
 wkt.workspace = true
 
