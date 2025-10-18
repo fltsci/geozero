@@ -16,6 +16,11 @@ edition.workspace = true
 homepage.workspace = true
 repository.workspace = true
 license.workspace = true
+rust-version.workspace = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "docsrs"]
 
 [features]
 default = ["with-geo", "with-geojson", "with-svg", "with-wkt"]
@@ -27,7 +32,7 @@ with-geojson = ["dep:geojson"]
 with-geos = ["dep:geos"]
 with-gpkg = ["with-wkb", "dep:sqlx", "sqlx?/sqlite"]
 with-gpx = ["dep:gpx"]
-with-mvt = ["dep:prost", "dep:prost-build", "dep:dup-indexer"]
+with-mvt = ["dep:prost", "dep:prost-build", "dep:dup-indexer", "dep:base64"]
 with-postgis-diesel = ["with-wkb", "dep:diesel", "dep:byteorder"]
 with-postgis-postgres = ["with-wkb", "dep:postgres-types", "dep:bytes"]
 with-postgis-sqlx = ["with-wkb", "dep:sqlx", "sqlx?/postgres"]
@@ -44,6 +49,7 @@ serde_json.workspace = true
 thiserror.workspace = true
 
 # Optional dependencies
+base64 = { workspace = true, optional = true }
 byteorder = { workspace = true, optional = true }
 bytes = { workspace = true, optional = true }
 csv = { workspace = true, optional = true }
@@ -64,6 +70,9 @@ sqlx = { workspace = true, optional = true }
 wkt = { workspace = true, optional = true }
 specta = { workspace = true }
 
+[build-dependencies]
+prost-build = { workspace = true, optional = true }
+
 [dev-dependencies]
 geo.workspace = true
 hex.workspace = true
@@ -80,12 +89,8 @@ sqlx = { workspace = true, features = [
 tokio = { workspace = true, features = ["macros"] }
 wkt.workspace = true
 
-[build-dependencies]
-prost-build = { workspace = true, optional = true }
-
-[package.metadata.docs.rs]
-all-features = true
-rustc-args = ["--cfg", "docsrs"]
+[lints]
+workspace = true
 
 [[test]]
 name = "gdal"
